@@ -4,10 +4,17 @@ resources:
     source:
       interval: 10s
       location: Eire
+  - name: github-repo
+    type: git
+    source:
+      uri: git@github.com:nikitarathi23/concourse-tutorial.git
+      branch: master
 
 jobs:
   - name: print
     plan:
       - get: time-controller
+        trigger: true
+      - get: github-repo
       - task: print-task
         file: print-job.yml
