@@ -1,0 +1,13 @@
+resources:
+  - name: time-controller
+    type: time
+    source:
+      interval: 10s
+      location: Eire
+
+jobs:
+  - name: print
+    plan:
+      - get: time-controller
+      - task: print-task
+        file: print-job.yml
